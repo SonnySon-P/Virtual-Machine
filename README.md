@@ -68,11 +68,11 @@ export PATH=$PATH:~/bin
 ```
 
 **二、運行程式方式：**
-```shell
-vm -load <path>  // 載入映像檔，將指定的映像檔解壓到容器目錄中
-vm -save <path>  // 將當前容器保存為新映像檔
-vm -create <path>  // 從映像檔創建容器
-vm -start <containerID>  // 啟動容器
-vm -stop <containerID>  // 停止容器
-vm -delete <containerID>  // 刪除容器
+```bash
+vm -load <path>  #  載入映像檔，將指定的映像檔解壓到容器目錄中
+vm -save <path>  #  將當前容器保存為新映像檔
+vm -create <path>  #  從映像檔創建容器
+vm -start <containerID>  #  啟動容器
+vm -stop <containerID>  #  停止容器
+vm -delete <containerID>  #  刪除容器
 ```
