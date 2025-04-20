@@ -37,7 +37,8 @@ su
 ```bash
 ./main --load <選擇debian或ubuntu作業系統> <選擇作業系統版本> <自訂container名稱>
 ```
-支持的作業系统版本，Debian有stable、buster、bullseye，Ubuntu有focal、jammy、kinetic、lunar。
+> [!Warning]
+> 請特別注意，支持的作業系统版本，Debian有stable、buster、bullseye，Ubuntu有focal、jammy、kinetic、lunar。
 
 2. 啟動容器
 ```bash
