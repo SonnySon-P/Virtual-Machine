@@ -17,18 +17,18 @@
 ## 貳、操作說明
 **一、安裝程式方式：** 
 請在UNIX類系統(如Linux或macOS)中，來運行該程式，步驟如下：
-***步驟1: 安裝debootstrap，作為未來下載ubuntu或debian（下載的是最小的完整ubuntu及debian作業系统）會使用到的套件。
+***步驟1:*** 安裝debootstrap，作為未來下載ubuntu或debian（下載的是最小的完整ubuntu及debian作業系统）會使用到的套件。
 ```bash
 apt update
 apt install debootstrap
 ```
 
-***步驟2: 編譯C，生成一個名為`main`的執行檔。
+***步驟2:*** 編譯C，生成一個名為`main`的執行檔。
 ```bash
 gcc -o main main.c
 ```
 
-***步驟 3: 切換到root
+***步驟 3:*** 切換到root
 ```bash
 su
 ```
