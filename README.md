@@ -11,7 +11,7 @@
 以下是開發該平台所採用的環境：
 * 虛擬機：Docker
 * 映像檔：golang
-* 程式語言：Golang
+* 程式語言：C
 * 程式編輯器：Visual Studio Code
 
 **三、檔案說明：** 
@@ -39,33 +39,24 @@
 
 ## 貳、操作說明
 **一、安裝程式方式：** 
-將一個編譯好的執行檔放置到`bin`資料夾並設置好環境路徑，步驟如下：
-***步驟1: 編譯Golang，生成一個名為`vm`的執行檔。
+請在UNIX類系統(如Linux或macOS)中，來運行該程式，步驟如下：
+***步驟1: 編譯C，生成一個名為`main`的執行檔。
 ```bash
-go build -o vm main.go
+gcc -o mini_container mini_container.c
 ```
 
-***步驟 2: 將執行檔放到`bin`資料夾
-請在UNIX類系統(如Linux或macOS)中，將執行檔放到`/usr/local/bin`或`~/bin` 通常是用來存放可執行檔的目錄。
+***步驟 2: 執行（需要root權限）
 ```bash
-mkdir -p ~/bin
-mv vm ~/bin/
+./main
 ```
 
-***步驟 3: 設置環境路徑
-接下來，您需要設置您的環境變數，使得系統可以找到您放置的`bin`資料夾。使得可以在任何地方執行`vm`。
-
-1. 開啟`.bashrc`或`.zshrc`配置檔(取決於您使用的 shell)，如果使用的是`bash`，需要編輯`~/.bashrc`文件；如果使用的是`zsh`，則是`~/.zshrc`文件。
+***步驟 3: 安裝debootstrap，來下載Ubuntu rootfs（是最小的完整ubuntu系统）
 ```bash
-nano ~/.bashrc  # 如果是 bash
-# 或者
-nano ~/.zshrc   # 如果是 zsh
+sudo apt update
+sudo apt install debootstrap
+sudo debootstrap jammy ./ubuntu_rootfs http://archive.ubuntu.com/ubuntu/
 ```
 
-2. 添加`bin`資料夾到`$PATH`，在配置文件中，加入以下一行：
-```bash
-export PATH=$PATH:~/bin
-```
 
 **二、運行程式方式：**
 ```bash
