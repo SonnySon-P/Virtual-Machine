@@ -14,64 +14,39 @@
 * 程式語言：C
 * 程式編輯器：Visual Studio Code
 
-**三、檔案說明：** 
-此專案檔案（指coding這個資料夾）主要分為兩個資料夾：nodejs和tests。其中，nodejs資料夾為後端平台的主要程式碼，tests資料夾則存放使用jest框架進行的單元測試。接下來將對各資料夾中的檔案內容進行詳細說明。
-```bash
-.
-├── LICENSE
-├── README.md
-└──  code  # 開發程式資料夾
-      ├── main.py  # 主程式
-      ├── readFile.py  # 讀取組語模組
-      ├── RV32IMemory.py  # 模擬memory模組
-      ├── RV32IRegisters.py  # 模擬register模組
-      ├── cpuCore.py  # 模擬CPU模組
-      ├── instructionTyple.py  # instruction與Typle的對應模組
-      ├── rType.py  # 模擬R-Type instruction運行模組
-      ├── iType.py  # 模擬I-Type instruction運行模組
-      ├── sType.py  # 模擬S-Type instruction運行模組
-      ├── bType.py  # 模擬B-Type instruction運行模組
-      ├── uType.py  # 模擬U-Type instruction運行模組
-      ├── jType.py  # 模擬J-Type instruction運行模組
-      ├── otherType.py  # 模擬ecall instruction運行模組
-      └── try.asm  # 測試檔案
-```
-
 ## 貳、操作說明
 **一、安裝程式方式：** 
 請在UNIX類系統(如Linux或macOS)中，來運行該程式，步驟如下：
-***步驟1: 編譯C，生成一個名為`main`的執行檔。
+***步驟1: 安裝debootstrap，作為未來下載ubuntu或debian（下載的是最小的完整ubuntu及debian作業系统）會使用到的套件。
 ```bash
-gcc -o mini_container mini_container.c
+apt update
+apt install debootstrap
 ```
 
-***步驟 2: 執行（需要root權限）
+***步驟2: 編譯C，生成一個名為`main`的執行檔。
 ```bash
-./main
+gcc -o main main.c
 ```
 
 ***步驟 3: 切換到root
 ```bash
-sudo su
-OR
 su
 ```
 
-***步驟 4: 安裝debootstrap，來下載Ubuntu rootfs或debian（是最小的完整ubuntu及debian系统）
+**二、運行程式方式：**
+1. 下載容器
 ```bash
-apt update
-apt install debootstrap
-debootstrap jammy ./ubuntu_rootfs http://archive.ubuntu.com/ubuntu/
-OR
-debootstrap --arch amd64 stable /debian http://deb.debian.org/debian
+./main --load <選擇debian或ubuntu作業系統> <選擇作業系統版本> <自訂container名稱>
+```
+支持的作業系统版本，Debian有stable、buster、bullseye，Ubuntu有focal、jammy、kinetic、lunar。
+
+2. 啟動容器
+```bash
+./main --start <container名稱>
+exit # 跳出容器
 ```
 
-**二、運行程式方式：**
+3. 移除容器（目前無法移除容器中的/proc虛擬檔案）
 ```bash
-vm -load <path>  #  載入映像檔，將指定的映像檔解壓到容器目錄中
-vm -save <path>  #  將當前容器保存為新映像檔
-vm -create <path>  #  從映像檔創建容器
-vm -start <containerID>  #  啟動容器
-vm -stop <containerID>  #  停止容器
-vm -delete <containerID>  #  刪除容器
+./main --delete <container名稱>
 ```
