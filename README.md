@@ -1,6 +1,6 @@
 # Homemade Virtual Machine
 
-基於Linux核心打造的Virtual Machine。
+基於Linux核心打造簡易的Virtual Machine。
 
 ## 壹、基本說明
 **一、目標：**
@@ -50,13 +50,21 @@ gcc -o mini_container mini_container.c
 ./main
 ```
 
-***步驟 3: 安裝debootstrap，來下載Ubuntu rootfs（是最小的完整ubuntu系统）
+***步驟 3: 切換到root
 ```bash
-sudo apt update
-sudo apt install debootstrap
-sudo debootstrap jammy ./ubuntu_rootfs http://archive.ubuntu.com/ubuntu/
+sudo su
+OR
+su
 ```
 
+***步驟 4: 安裝debootstrap，來下載Ubuntu rootfs或debian（是最小的完整ubuntu及debian系统）
+```bash
+apt update
+apt install debootstrap
+debootstrap jammy ./ubuntu_rootfs http://archive.ubuntu.com/ubuntu/
+OR
+debootstrap --arch amd64 stable /debian http://deb.debian.org/debian
+```
 
 **二、運行程式方式：**
 ```bash
